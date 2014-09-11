@@ -1,0 +1,29 @@
+{
+    "name": "wtfzdotnet/tmdb-package",
+    "description": "Laravel Package for TMDB ( The Movie Database ) API. Provides easy access to the wtfzdotnet/php-tmdb-api library.",
+    "authors": [
+        {
+            "name": "Michael Roterman",
+            "email": "michael@wtfz.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*",
+        "wtfzdotnet/php-tmdb-api": "~1.1"
+    },
+    "require-dev": {
+        "doctrine/cache": ">=1.3.0",
+        "monolog/monolog": ">=1.7.0"
+    },
+    "suggest": {
+        "doctrine/cache": "Required if you want to make use of caching features.",
+        "monolog/monolog": "Required if you want to make use of logging features."
+    },
+    "autoload": {
+        "psr-0": {
+            "Wtfz\\TmdbPackage\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
