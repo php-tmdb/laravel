@@ -8,6 +8,7 @@ namespace Wtfz\TmdbPackage;
 
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Process\Exception\RuntimeException;
+use Tmdb\ApiToken;
 
 class TmdbServiceProvider extends ServiceProvider {
 
@@ -41,13 +42,13 @@ class TmdbServiceProvider extends ServiceProvider {
         });
 
         $this->app['Tmdb'] = $this->app->share(function($app) {
-            $config = $app['config']->get('tmdb::config');
+            $config = $app['config']->get('tmdb-package::config');
 
             if (!array_key_exists('api_key', $config) || empty($config['api_key'])) {
-                throw new RuntimeException('The TMDB api_key should be set in your configuration.');
+                throw new \RuntimeException('The TMDB api_key should be set in your configuration.');
             }
 
-            $token  = new \Tmdb\ApiToken($config['api_key']);
+            $token  = new ApiToken($config['api_key']);
             $client = new Tmdb($token);
 
             if ($config['cache']['enabled']) {
