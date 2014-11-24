@@ -25,7 +25,7 @@ class TmdbServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('wtfz/tmdb');
+		$this->package('wtfzdotnet/tmdb-package');
 	}
 
 	/**
