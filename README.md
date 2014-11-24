@@ -15,7 +15,7 @@ $ sudo mv composer.phar /usr/local/bin/composer
 Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/tmdb-package": ">=0.1"
+"wtfzdotnet/tmdb-package": "~0.1"
 ```
 
 Configuration
