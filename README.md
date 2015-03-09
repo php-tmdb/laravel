@@ -32,10 +32,10 @@ Add to your `app/config/app.php` the service provider:
 Then publish the configuration file:
 
 ```
-php artisan config:publish wtfzdotnet/tmdb-package
+php artisan vendor:publish
 ```
 
-And modify the configuration file located at `app/config/packages/wtfz/tmdb/config.php` accordingly.
+And modify the configuration file located at `config/tmdb.php` accordingly.
 
 That's all! Fire away!
 
