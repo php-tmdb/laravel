@@ -26,7 +26,9 @@ class TmdbServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('wtfzdotnet/tmdb-package');
+		$this->publishes([
+			__DIR__.'/../../config/config.php' => config_path('tmdb.php'),
+		]);
 	}
 
 	/**
@@ -42,7 +44,8 @@ class TmdbServiceProvider extends ServiceProvider {
         });
 
         $this->app['Tmdb'] = $this->app->share(function($app) {
-            $config = $app['config']->get('tmdb-package::config');
+
+        	$config = config('tmdb');
 
             if (!array_key_exists('api_key', $config) || empty($config['api_key'])) {
                 throw new \RuntimeException('The TMDB api_key should be set in your configuration.');

@@ -20,7 +20,7 @@ Add the following to your require block in composer.json config
 
 Configuration
 ----------------
-Add to your `app/config/app.php` the service provider:
+Add to your `config/app.php` the service provider:
 
 ```php
 // Provider
@@ -32,10 +32,10 @@ Add to your `app/config/app.php` the service provider:
 Then publish the configuration file:
 
 ```
-php artisan config:publish wtfzdotnet/tmdb-package
+php artisan vendor:publish
 ```
 
-And modify the configuration file located at `app/config/packages/wtfz/tmdb/config.php` accordingly.
+And modify the configuration file located at `config/tmdb.php` accordingly.
 
 That's all! Fire away!
 
