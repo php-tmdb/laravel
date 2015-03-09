@@ -20,7 +20,7 @@ Add the following to your require block in composer.json config
 
 Configuration
 ----------------
-Add to your `app/config/app.php` the service provider:
+Add to your `config/app.php` the service provider:
 
 ```php
 // Provider
