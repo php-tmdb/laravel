@@ -19,6 +19,13 @@ class TmdbServiceProvider extends ServiceProvider {
 	 */
 	protected $defer = false;
 
+
+
+	public function __construct()
+	{
+		return $this->resources();
+	}
+
 	/**
 	 * Bootstrap the application events.
 	 *
@@ -71,6 +78,12 @@ class TmdbServiceProvider extends ServiceProvider {
 
             return $client;
         });
+	}
+
+	public function resources()
+	{
+		$endfile = $this->app->configPath();
+		return $endfile;
 	}
 
 	/**
