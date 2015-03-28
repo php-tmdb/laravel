@@ -1,85 +1,89 @@
 <?php
-/**
- * @package Wtfz_TmdbPackage
- * @author Michael Roterman <michael@wtfz.net>
- * @copyright (c) 2014, Michael Roterman
- */
+
 namespace Wtfz\TmdbPackage;
 
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Process\Exception\RuntimeException;
+
+use Wtfz\TmdbPackage\TmdbServiceProviderLaravel4;
+use Wtfz\TmdbPackage\TmdbServiceProviderLaravel5;
+
 use Tmdb\ApiToken;
+use Tmdb\Client;
 
-class TmdbServiceProvider extends ServiceProvider {
+class TmdbServiceProvider extends ServiceProvider
+{
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
 
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
+    /**
+     * Actual provider
+     *
+     * @var \Illuminate\Support\ServiceProvider
+     */
+    protected $provider;
 
-	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->package('wtfzdotnet/tmdb-package');
-	}
+    /**
+     * Construct the TMDB service provider
+     *
+     * @return  void
+     */
+    public function __construct()
+    {
+        // Call the parent constructor with all provided arguments
+        $arguments = func_get_args();
+        call_user_func_array(
+            [$this, 'parent::' . __FUNCTION__],
+            $arguments
+        );
 
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{
-        $this->app->booting(function() {
-            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            $loader->alias('Tmdb', 'Wtfz\TmdbPackage\Facades\Tmdb');
-        });
+        $this->registerProvider();
+    }
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        return $this->provider->boot();
+    }
 
-        $this->app['Tmdb'] = $this->app->share(function($app) {
-            $config = $app['config']->get('tmdb-package::config');
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->provider->register();
+    }
 
-            if (!array_key_exists('api_key', $config) || empty($config['api_key'])) {
-                throw new \RuntimeException('The TMDB api_key should be set in your configuration.');
-            }
+    /**
+     * Register the ServiceProvider according to Laravel version
+     *
+     * @return \Wtfz\TmdbPackage\Provider\ProviderInterface
+     */
+    private function registerProvider()
+    {
+        $app = $this->app;
 
-            $token  = new ApiToken($config['api_key']);
-            $client = new Tmdb($token);
+        // Pick the correct service provider for the current verison of Laravel
+        $this->provider = (version_compare($app::VERSION, '5.0', '<'))
+            ? new TmdbServiceProviderLaravel4($app)
+            : new TmdbServiceProviderLaravel5($app);
+    }
 
-            if ($config['cache']['enabled']) {
-                $client->setCaching(
-                    true,
-                    isset($config['cache']['path']) && !empty($config['cache']['path']) ?
-                        $config['cache']['path'] :
-                        storage_path('tmdb')
-                );
-            }
-
-            if ($config['log']['enabled']) {
-                $client->setLogging(
-                    true,
-                    isset($config['log']['path']) && !empty($config['log']['path']) ?
-                        $config['log']['path'] :
-                        storage_path('logs/tmdb.log')
-                );
-            }
-
-            return $client;
-        });
-	}
-
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return ['tmdb'];
-	}
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return array('tmdb');
+    }
 }

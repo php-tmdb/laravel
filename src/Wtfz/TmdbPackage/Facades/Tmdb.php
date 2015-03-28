@@ -15,6 +15,9 @@ class Tmdb extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'Tmdb'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'Tmdb\Client';
+    }
 
 }

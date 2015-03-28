@@ -9,8 +9,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.2.*",
-        "wtfzdotnet/php-tmdb-api": "~1.1"
+        "illuminate/support": "~5.0 || ~4.0",
+        "wtfzdotnet/php-tmdb-api": "~2.0"
     },
     "require-dev": {
         "doctrine/cache": ">=1.3.0",
