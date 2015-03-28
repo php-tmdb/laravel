@@ -13,14 +13,14 @@ use Tmdb\Client;
 
 class TmdbServiceProviderLaravel4 extends ServiceProvider {
 
-	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->package('wtfzdotnet/tmdb-package');
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->package('wtfzdotnet/tmdb-package');
     }
 
     /**
@@ -37,5 +37,5 @@ class TmdbServiceProviderLaravel4 extends ServiceProvider {
             $token = new ApiToken($config['api_key']);
             return new Client($token, $config['options']);
         });
-	}
+    }
 }

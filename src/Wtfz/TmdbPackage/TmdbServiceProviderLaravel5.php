@@ -12,13 +12,13 @@ use Tmdb\Client;
 
 class TmdbServiceProviderLaravel5 extends ServiceProvider {
 
-	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
         $this->publishes([
             $this->defaultConfig() => config_path('tmdb.php'),
         ]);
@@ -40,7 +40,7 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider {
             $token = new ApiToken($config['api_key']);
             return new Client($token, $config['options']);
         });
-	}
+    }
 
     /**
      * Setup configuration
