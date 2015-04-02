@@ -60,6 +60,7 @@ class TmdbServiceProvider extends ServiceProvider
     public function register()
     {
         $this->provider->register();
+        $this->app->bind('Symfony\Component\EventDispatcher\EventDispatcherInterface', 'Symfony\Component\EventDispatcher\EventDispatcher');
 
         $this->app->bind('Tmdb\Client', function() {
             $config = $this->provider->config();

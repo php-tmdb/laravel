@@ -30,7 +30,7 @@ class TmdbServiceProviderLaravel4 extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter', 'Wtfz\TmdbPackage\Adapters\Laravel4EventDispatcher');
+        $this->app->bind('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter', 'Wtfz\TmdbPackage\Adapters\EventDispatcherLaravel4');
     }
 
     public function config()

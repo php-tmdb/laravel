@@ -33,7 +33,7 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider {
     {
         $this->setupConfiguration();
 
-        $this->app->bind('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter', 'Wtfz\TmdbPackage\Adapters\Laravel5EventDispatcher');
+        $this->app->bind('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter', 'Wtfz\TmdbPackage\Adapters\EventDispatcherLaravel5');
     }
 
     public function config()
