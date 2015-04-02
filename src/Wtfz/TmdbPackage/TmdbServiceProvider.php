@@ -60,6 +60,14 @@ class TmdbServiceProvider extends ServiceProvider
     public function register()
     {
         $this->provider->register();
+
+        $this->app->bind('Tmdb\Client', function() {
+            $config = $this->provider->config();
+
+            // Register the client using the key and options from config
+            $token = new ApiToken($config['api_key']);
+            return new Client($token, $config['options']);
+        });
     }
 
     /**

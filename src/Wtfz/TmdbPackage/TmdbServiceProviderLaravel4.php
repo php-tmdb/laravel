@@ -30,12 +30,11 @@ class TmdbServiceProviderLaravel4 extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('Tmdb\Client', function() {
-            $config = $this->app['config']->get('tmdb-package::tmdb');
+        $this->app->bind('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter', 'Wtfz\TmdbPackage\Adapters\Laravel4EventDispatcher');
+    }
 
-            // Register the client using the key and options from config
-            $token = new ApiToken($config['api_key']);
-            return new Client($token, $config['options']);
-        });
+    public function config()
+    {
+        return $this->app['config']->get('tmdb-package::tmdb');
     }
 }
