@@ -11,7 +11,7 @@ use Illuminate\Contracts\Events\Dispatcher as LaravelDispatcher;
  * It passes any request on to a Symfony Dispatcher and only
  * uses the Laravel Dispatcher only when dispatching events
  */
-class Laravel5EventDispatcher extends EventDispatcherAdapter
+class EventDispatcherLaravel5 extends EventDispatcherAdapter
 {
     /**
      * Forward all methods to the Laravel Events Dispatcher

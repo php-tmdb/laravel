@@ -2,7 +2,7 @@
 
 namespace Wtfz\Adapters\Tests;
 
-use Wtfz\TmdbPackage\Adapters\Laravel5EventDispatcher as AdapterDispatcher;
+use Wtfz\TmdbPackage\Adapters\EventDispatcherLaravel5 as AdapterDispatcher;
 use Illuminate\Events\Dispatcher as LaravelDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcher as SymfonyDispatcher;
 
@@ -10,7 +10,7 @@ use Symfony\Component\EventDispatcher\Tests\AbstractEventDispatcherTest;
 use Symfony\Component\EventDispatcher\Tests\TestEventListener;
 use Symfony\Component\EventDispatcher\Tests\TestWithDispatcher;
 
-class Laravel5EventDispatcherTest extends AbstractEventDispatcherTest
+class EventDispatcherTestLaravel5 extends AbstractEventDispatcherTest
 {
     private $laravelDispatcher;
     private $symfonyDispatcher;
