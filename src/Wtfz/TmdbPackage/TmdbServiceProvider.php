@@ -63,6 +63,7 @@ class TmdbServiceProvider extends ServiceProvider
 
         $this->app->bind('Tmdb\Client', function() {
             $config = $this->provider->config();
+            $config['event_dispatcher'] = $this->app->make('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter');
 
             // Register the client using the key and options from config
             $token = new ApiToken($config['api_key']);
