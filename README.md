@@ -42,6 +42,7 @@ php artisan vendor:publish --provider=wtfzdotnet/tmdb-package
 ```
 
 Next you can modify the generated configuration file `tmdb.php` accordingly.
+<!-- TODO: add documentation about security, cache, log -->
 
 That's all! Fire away!
 
@@ -83,6 +84,22 @@ class MoviesController {
 }
 ```
 
+### Listening to events
+We can easily listen to events that are dispatched using the Laravel event dispatcher that we're familiar with.
+The following example listens to any request that is made and logs a message.
+```php
+use Log;
+use Event;
+use Tmdb\Event\TmdbEvents;
+use Tmdb\Event\RequestEvent;
+
+Event::listen(TmdbEvents::REQUEST, function(RequestEvent $event) {
+    Log::info("A request was made to TMDB");
+    // do stuff with $event
+});
+```
+In Laravel 5 instead of using the `Event` facade we could also have used the `EventServiceProvider` to register our event listener.
+
 **For all all other interactions take a look at [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api).**
 
 
@@ -90,7 +107,6 @@ class MoviesController {
 This package is still a work in progress.
 - Caching settings
 - Logging settings
-- Event Dispatcher
 - Documentation
 - Plugins
 - Image helper (`tmdb_image()`)
