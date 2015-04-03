@@ -58,6 +58,6 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider {
      */
     private function defaultConfig()
     {
-        return __DIR__.'/../../config/tmdb.php';
+        return __DIR__.'/config/tmdb.php';
     }
 }

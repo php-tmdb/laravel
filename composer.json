@@ -24,7 +24,7 @@
         "monolog/monolog": "Required if you want to make use of logging features."
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Wtfz\\TmdbPackage\\": "src/"
         }
     },

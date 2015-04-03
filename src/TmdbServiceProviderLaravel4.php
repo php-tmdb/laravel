@@ -20,7 +20,7 @@ class TmdbServiceProviderLaravel4 extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('wtfzdotnet/tmdb-package');
+        $this->package('wtfzdotnet/tmdb-package', null, __DIR__);
     }
 
     /**
