@@ -100,13 +100,58 @@ Event::listen(TmdbEvents::REQUEST, function(RequestEvent $event) {
 ```
 In Laravel 5 instead of using the `Event` facade we could also have used the `EventServiceProvider` to register our event listener.
 
+### Image helper
+You can easily use the `ImageHelper` by using dependency injection. The following example shows how to show the poster image of the 20 most popular movies.
+
+```php
+namespace App\Http\Controllers;
+
+use Tmdb\Helper\ImageHelper;
+use Tmdb\Repository\MovieRepository;
+
+class WelcomeController extends Controller {
+
+    private $movies;
+    private $helepr;
+
+    public function __construct(MovieRepository $movies, ImageHelper $helper)
+    {
+        $this->movies = $movies;
+        $this->helper = $helper;
+    }
+
+    /**
+     * Show the application welcome screen to the user.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $popular = $this->movies->getPopular();
+
+        foreach ($popular as $movie)
+        {
+            $image = $movie->getPosterImage();
+            echo ($this->helper->getHtml($image, 'w154', 260, 420));
+        }
+    }
+
+}
+```
+The `Configuration` used by the `Tmdb\Helper\ImageHelper` is automatically loaded by the IoC container.
+If you are a Laravel 5.1 (currently not released) user you could also use the blade's new `@inject` functionality,
+```
+@inject('image', 'Tmdb\Helper\ImageHelper')
+
+@foreach ($movies as $movie)
+    {{ $image->getHtml($movie->getPosterImage(), 'w154', 260, 420) }}
+@endforeach
+```
+
 **For all all other interactions take a look at [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api).**
 
 
 ## Work in progress
 This package is still a work in progress.
-- Caching settings
-- Logging settings
 - Documentation
 - Plugins
-- Image helper (`tmdb_image()`)

@@ -80,6 +80,12 @@ class TmdbServiceProvider extends ServiceProvider
             $token = new ApiToken($config['api_key']);
             return new Client($token, $options);
         });
+
+        // bind the configuration (used by the image helper)
+        $this->app->bind('Tmdb\Model\Configuration', function() {
+            $configuration = $this->app->make('Tmdb\Repository\ConfigurationRepository');
+            return $configuration->load();
+        });
     }
 
     /**
