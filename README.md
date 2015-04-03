@@ -42,7 +42,6 @@ php artisan vendor:publish --provider=wtfzdotnet/tmdb-package
 ```
 
 Next you can modify the generated configuration file `tmdb.php` accordingly.
-<!-- TODO: add documentation about security, cache, log -->
 
 That's all! Fire away!
 
@@ -148,10 +147,28 @@ If you are a Laravel 5.1 (currently not released) user you could also use the bl
 @endforeach
 ```
 
+### Registering plugins
+Plugins can be registered in a service provider using the boot method.
+```php
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Tmdb\HttpClient\Plugin\LanguageFilterPlugin;
+
+class TmdbServiceProvider extends ServiceProvider {
+
+    /**
+     * Add a Dutch language filter to the Tmdb client
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $plugin = new LanguageFilterPlugin('nl');
+        $client = $this->app->make('Tmdb\Client');
+        $client->getHttpClient()->addSubscriber($plugin);
+    }
+}
+```
+
 **For all all other interactions take a look at [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api).**
-
-
-## Work in progress
-This package is still a work in progress.
-- Documentation
-- Plugins
