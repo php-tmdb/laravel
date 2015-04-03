@@ -59,16 +59,26 @@ class TmdbServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Configure any bindings that are version dependent
         $this->provider->register();
-        $this->app->bind('Symfony\Component\EventDispatcher\EventDispatcherInterface', 'Symfony\Component\EventDispatcher\EventDispatcher');
 
+        // Let the IoC container be able to make a Symfony event dispatcher
+        $this->app->bind(
+            'Symfony\Component\EventDispatcher\EventDispatcherInterface',
+            'Symfony\Component\EventDispatcher\EventDispatcher'
+        );
+
+        // Setup default configurations for the Tmdb Client
         $this->app->bind('Tmdb\Client', function() {
             $config = $this->provider->config();
-            $config['event_dispatcher'] = $this->app->make('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter');
+            $options = $config['options'];
+
+            // Use an Event Dispatcher that uses the Laravel event dispatcher
+            $options['event_dispatcher'] = $this->app->make('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter');
 
             // Register the client using the key and options from config
             $token = new ApiToken($config['api_key']);
-            return new Client($token, $config['options']);
+            return new Client($token, $options);
         });
     }
 
