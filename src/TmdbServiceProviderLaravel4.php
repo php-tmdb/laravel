@@ -1,8 +1,8 @@
 <?php
 /**
- * @package Wtfz_TmdbPackage
- * @author Michael Roterman <michael@wtfz.net>
- * @copyright (c) 2014, Michael Roterman
+ * @package php-tmdb\laravel
+ * @author Mark Redeman <markredeman@gmail.com>
+ * @copyright (c) 2014, Mark Redeman
  */
 namespace Tmdb\Laravel;
 
