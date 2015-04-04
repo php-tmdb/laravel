@@ -1,11 +1,11 @@
 <?php
 
-namespace Wtfz\TmdbPackage;
+namespace Tmdb\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 
-use Wtfz\TmdbPackage\TmdbServiceProviderLaravel4;
-use Wtfz\TmdbPackage\TmdbServiceProviderLaravel5;
+use Tmdb\Laravel\TmdbServiceProviderLaravel4;
+use Tmdb\Laravel\TmdbServiceProviderLaravel5;
 
 use Tmdb\ApiToken;
 use Tmdb\Client;
@@ -74,7 +74,7 @@ class TmdbServiceProvider extends ServiceProvider
             $options = $config['options'];
 
             // Use an Event Dispatcher that uses the Laravel event dispatcher
-            $options['event_dispatcher'] = $this->app->make('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter');
+            $options['event_dispatcher'] = $this->app->make('Tmdb\Laravel\Adapters\EventDispatcherAdapter');
 
             // Register the client using the key and options from config
             $token = new ApiToken($config['api_key']);
@@ -91,7 +91,7 @@ class TmdbServiceProvider extends ServiceProvider
     /**
      * Register the ServiceProvider according to Laravel version
      *
-     * @return \Wtfz\TmdbPackage\Provider\ProviderInterface
+     * @return \Tmdb\Laravel\Provider\ProviderInterface
      */
     private function registerProvider()
     {

@@ -4,7 +4,7 @@
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2014, Michael Roterman
  */
-namespace Wtfz\TmdbPackage;
+namespace Tmdb\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 use Tmdb\ApiToken;
@@ -33,7 +33,7 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider {
     {
         $this->setupConfiguration();
 
-        $this->app->bind('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter', 'Wtfz\TmdbPackage\Adapters\EventDispatcherLaravel5');
+        $this->app->bind('Tmdb\Laravel\Adapters\EventDispatcherAdapter', 'Tmdb\Laravel\Adapters\EventDispatcherLaravel5');
     }
 
     public function config()

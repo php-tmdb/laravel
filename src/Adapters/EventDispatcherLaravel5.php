@@ -1,6 +1,6 @@
 <?php
 
-namespace Wtfz\TmdbPackage\Adapters;
+namespace Tmdb\Laravel\Adapters;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as SymfonyDispatcher;
 use Illuminate\Contracts\Events\Dispatcher as LaravelDispatcher;

@@ -15,7 +15,7 @@ $ sudo mv composer.phar /usr/local/bin/composer
 Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/tmdb-package": "~0.1"
+"php-tmdb/laravel": "~0.1"
 ```
 
 ## Configuration
@@ -25,7 +25,7 @@ Add to your `app/config/app.php` (Laravel 4) or 'config/app.php' (Laravel 5) the
 'providers' => array(
     // other service providers
 
-    'Wtfz\TmdbPackage\TmdbServiceProvider',
+    'Tmdb\Laravel\TmdbServiceProvider',
 )
 ```
 
@@ -50,7 +50,7 @@ We can choose to either use the `Tmdb` Facade, or to use dependency injection.
 
 ### Facade example
 ```php
-use Wtfz\TmdbPackage\Facades\Tmdb;
+use Tmdb\Laravel\Facades\Tmdb;
 
 class MoviesController {
 
@@ -171,4 +171,4 @@ class TmdbServiceProvider extends ServiceProvider {
 }
 ```
 
-**For all all other interactions take a look at [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api).**
+**For all all other interactions take a look at [php-tmdb/api](https://github.com/php-tmdb/api).**

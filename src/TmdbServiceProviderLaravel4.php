@@ -4,7 +4,7 @@
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2014, Michael Roterman
  */
-namespace Wtfz\TmdbPackage;
+namespace Tmdb\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Process\Exception\RuntimeException;
@@ -30,7 +30,7 @@ class TmdbServiceProviderLaravel4 extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('Wtfz\TmdbPackage\Adapters\EventDispatcherAdapter', 'Wtfz\TmdbPackage\Adapters\EventDispatcherLaravel4');
+        $this->app->bind('Tmdb\Laravel\Adapters\EventDispatcherAdapter', 'Tmdb\Laravel\Adapters\EventDispatcherLaravel4');
     }
 
     public function config()

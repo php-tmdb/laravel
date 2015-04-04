@@ -1,16 +1,16 @@
 {
-    "name": "wtfzdotnet/tmdb-package",
+    "name": "php-tmdb/laravel",
     "description": "Laravel Package for TMDB ( The Movie Database ) API. Provides easy access to the wtfzdotnet/php-tmdb-api library.",
     "authors": [
         {
-            "name": "Michael Roterman",
-            "email": "michael@wtfz.net"
+            "name": "Mark Redeman",
+            "email": "markredeman@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "~5.0 || ~4.0",
-        "wtfzdotnet/php-tmdb-api": "~2.0"
+        "php-tmdb/api": "~2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Wtfz\\TmdbPackage\\": "src/"
+            "Tmdb\\Laravel\\": "src/"
         }
     },
     "minimum-stability": "stable"

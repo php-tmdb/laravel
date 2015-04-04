@@ -4,7 +4,7 @@
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2014, Michael Roterman
  */
-namespace Wtfz\TmdbPackage\Facades;
+namespace Tmdb\Laravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

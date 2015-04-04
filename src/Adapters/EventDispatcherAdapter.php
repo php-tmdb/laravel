@@ -1,6 +1,6 @@
 <?php
 
-namespace Wtfz\TmdbPackage\Adapters;
+namespace Tmdb\Laravel\Adapters;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

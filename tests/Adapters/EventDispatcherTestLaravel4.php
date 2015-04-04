@@ -1,8 +1,8 @@
 <?php
 
-namespace Wtfz\Adapters\Tests;
+namespace Tmdb\Laravel\Adapters\Tests;
 
-use Wtfz\TmdbPackage\Adapters\EventDispatcherLaravel4 as AdapterDispatcher;
+use Tmdb\Laravel\Adapters\EventDispatcherLaravel4 as AdapterDispatcher;
 use Illuminate\Events\Dispatcher as LaravelDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcher as SymfonyDispatcher;
 
