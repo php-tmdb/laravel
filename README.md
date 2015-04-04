@@ -1,6 +1,6 @@
 ## Description
 A Laraval Package for use together with the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB Wrapper.
-This package comes with a service provider that configures the `TMDB\Client` and registers it to the IoC container.
+This package comes with a service provider that configures the `Tmdb\Client` and registers it to the IoC container.
 Both Laravel 5 and 4 are supported.
 
 
