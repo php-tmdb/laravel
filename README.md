@@ -49,6 +49,8 @@ That's all! Fire away!
 We can choose to either use the `Tmdb` Facade, or to use dependency injection.
 
 ### Facade example
+The example below shows how you can use the `Tmdb` facade.
+If you don't want to keep adding the `use Tmdb\Laravel\Facades\Tmdb;` statement in your files, then you can also add the facade as an alias in `config/app.php` file.
 ```php
 use Tmdb\Laravel\Facades\Tmdb;
 
