@@ -1,5 +1,5 @@
 ## Description
-A Laraval Package for use together with the [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api) TMDB Wrapper.
+A Laraval Package for use together with the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB Wrapper.
 This package comes with a service provider that configures the `TMDB\Client` and registers it to the IoC container.
 Both Laravel 5 and 4 are supported.
 
@@ -33,12 +33,12 @@ Then publish the configuration file:
 
 #### Laravel 4:
 ```
-php artisan config:publish wtfzdotnet/tmdb-package
+php artisan config:publish php-tmdb/laravel
 ```
 
 #### Laravel 5:
 ```
-php artisan vendor:publish --provider=wtfzdotnet/tmdb-package
+php artisan vendor:publish --provider=php-tmdb/laravel
 ```
 
 Next you can modify the generated configuration file `tmdb.php` accordingly.
