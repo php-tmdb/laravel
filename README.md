@@ -15,7 +15,7 @@ $ sudo mv composer.phar /usr/local/bin/composer
 Add the following to your require block in composer.json config
 
 ```
-"php-tmdb/laravel": "~0.1"
+"php-tmdb/laravel": "~1.0"
 ```
 
 ## Configuration
