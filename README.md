@@ -143,7 +143,7 @@ If you are a Laravel 5.1 (currently not released) user you could also use the bl
 @inject('image', 'Tmdb\Helper\ImageHelper')
 
 @foreach ($movies as $movie)
-    {{ $image->getHtml($movie->getPosterImage(), 'w154', 260, 420) }}
+    {!! $image->getHtml($movie->getPosterImage(), 'w154', 260, 420) !!}
 @endforeach
 ```
 
