@@ -113,7 +113,7 @@ use Tmdb\Repository\MovieRepository;
 class WelcomeController extends Controller {
 
     private $movies;
-    private $helepr;
+    private $helper;
 
     public function __construct(MovieRepository $movies, ImageHelper $helper)
     {
