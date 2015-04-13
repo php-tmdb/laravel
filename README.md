@@ -150,7 +150,7 @@ If you are a Laravel 5.1 (currently not released) user you could also use the bl
 ```
 
 ### Registering plugins
-Plugins can be registered in a service provider using the boot method.
+Plugins can be registered in a service provider using the `boot()` method.
 ```php
 namespace App\Providers;
 
@@ -169,6 +169,15 @@ class TmdbServiceProvider extends ServiceProvider {
         $plugin = new LanguageFilterPlugin('nl');
         $client = $this->app->make('Tmdb\Client');
         $client->getHttpClient()->addSubscriber($plugin);
+    }
+
+    /**
+     * Register services
+     * @return void
+     */
+    public function register()
+    {
+        // register any services that you need
     }
 }
 ```
