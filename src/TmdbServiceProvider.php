@@ -73,7 +73,7 @@ class TmdbServiceProvider extends ServiceProvider
         );
 
         // Setup default configurations for the Tmdb Client
-        $this->app->bind('Tmdb\Client', function() {
+        $this->app->bindShared('Tmdb\Client', function() {
             $config = $this->provider->config();
             $options = $config['options'];
 
