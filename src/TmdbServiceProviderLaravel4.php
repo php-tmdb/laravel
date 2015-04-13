@@ -7,9 +7,6 @@
 namespace Tmdb\Laravel;
 
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Process\Exception\RuntimeException;
-use Tmdb\ApiToken;
-use Tmdb\Client;
 
 class TmdbServiceProviderLaravel4 extends ServiceProvider {
 

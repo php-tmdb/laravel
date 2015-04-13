@@ -7,8 +7,6 @@
 namespace Tmdb\Laravel;
 
 use Illuminate\Support\ServiceProvider;
-use Tmdb\ApiToken;
-use Tmdb\Client;
 
 class TmdbServiceProviderLaravel5 extends ServiceProvider {
 
@@ -58,6 +56,6 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider {
      */
     private function defaultConfig()
     {
-        return __DIR__.'/config/tmdb.php';
+        return __DIR__ . '/config/tmdb.php';
     }
 }

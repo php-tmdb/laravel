@@ -27,7 +27,7 @@ abstract class EventDispatcherAdapter implements SymfonyDispatcher
 
     /**
      * The Symfony Event Dispatcher
-     * @var  Symfony\Component\EventDispatcher
+     * @var  Symfony\Component\EventDispatcher\EventDispatcherInterface
      */
     protected $symfonyDispatcher;
 
@@ -96,7 +96,7 @@ abstract class EventDispatcherAdapter implements SymfonyDispatcher
      * Removes an event listener from the specified events.
      *
      * @param string   $eventName The event to remove a listener from
-     * @param callable $listener  The listener to remove
+     * @param callable $listenerToBeRemoved The listener to remove
      */
     public function removeListener($eventName, $listenerToBeRemoved)
     {

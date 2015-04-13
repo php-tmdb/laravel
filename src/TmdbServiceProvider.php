@@ -32,8 +32,6 @@ class TmdbServiceProvider extends ServiceProvider
 
     /**
      * Construct the TMDB service provider
-     *
-     * @return  void
      */
     public function __construct()
     {
@@ -46,6 +44,7 @@ class TmdbServiceProvider extends ServiceProvider
 
         $this->registerProvider();
     }
+
     /**
      * Bootstrap the application events.
      *
