@@ -7,10 +7,8 @@
 namespace Tmdb\Laravel;
 
 use Illuminate\Support\ServiceProvider;
-
 use Tmdb\Laravel\TmdbServiceProviderLaravel4;
 use Tmdb\Laravel\TmdbServiceProviderLaravel5;
-
 use Tmdb\ApiToken;
 use Tmdb\Client;
 

@@ -17,7 +17,7 @@ class TmdbServiceProviderLaravel4 extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('wtfzdotnet/tmdb-package', null, __DIR__);
+        $this->package('php-tmdb/laravel', 'tmdb', __DIR__);
     }
 
     /**
@@ -30,8 +30,13 @@ class TmdbServiceProviderLaravel4 extends ServiceProvider {
         $this->app->bind('Tmdb\Laravel\Adapters\EventDispatcherAdapter', 'Tmdb\Laravel\Adapters\EventDispatcherLaravel4');
     }
 
+    /**
+     * Get the TMDB configuration from the config repository
+     *
+     * @return array
+     */
     public function config()
     {
-        return $this->app['config']->get('tmdb-package::tmdb');
+        return $this->app['config']->get('tmdb::tmdb');
     }
 }

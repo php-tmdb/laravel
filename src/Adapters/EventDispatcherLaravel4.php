@@ -19,8 +19,8 @@ class EventDispatcherLaravel4 extends EventDispatcherAdapter
 {
     /**
      * Forward all methods to the Laravel Events Dispatcher
-     * @param Symfony\Component\EventDispatcher\EventDispatcherInterface $symfonyDispatcher
-     * @param Illuminate\Events\Dispatcher $laravelDispatcher
+     * @param LaravelDispatcher $laravelDispatcher
+     * @param SymfonyDispatcher $symfonyDispatcher
      */
     public function __construct(LaravelDispatcher $laravelDispatcher, SymfonyDispatcher $symfonyDispatcher)
     {

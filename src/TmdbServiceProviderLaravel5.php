@@ -34,6 +34,11 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider {
         $this->app->bind('Tmdb\Laravel\Adapters\EventDispatcherAdapter', 'Tmdb\Laravel\Adapters\EventDispatcherLaravel5');
     }
 
+    /**
+     * Get the TMDB configuration from the config repository
+     *
+     * @return array
+     */
     public function config()
     {
         return $this->app['config']->get('tmdb');
@@ -52,6 +57,7 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider {
 
     /**
      * Returns the default configuration path
+     *
      * @return string
      */
     private function defaultConfig()
