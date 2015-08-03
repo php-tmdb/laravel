@@ -64,6 +64,16 @@ class EventDispatcherTestLaravel4 extends AbstractEventDispatcherTest
      * assert that it is the Symfony Dispatcher
      */
 
+    public function testLegacyEventReceivesTheDispatcherInstance()
+    {
+        $dispatcher = null;
+        $this->dispatcher->addListener('test', function ($event) use (&$dispatcher) {
+            $dispatcher = $event->getDispatcher();
+        });
+        $this->dispatcher->dispatch('test');
+        $this->assertSame($this->symfonyDispatcher, $dispatcher);
+    }
+
     public function testEventReceivesTheDispatcherInstance()
     {
         $dispatcher = null;
