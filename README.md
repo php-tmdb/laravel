@@ -19,7 +19,7 @@ Add the following to your require block in composer.json config
 ```
 
 ## Configuration
-Add to your `app/config/app.php` (Laravel 4) or 'config/app.php' (Laravel 5) the service provider:
+For Laravel 4 edit your `app/config/app.php` the service provider:
 
 ```php
 'providers' => array(
@@ -27,6 +27,16 @@ Add to your `app/config/app.php` (Laravel 4) or 'config/app.php' (Laravel 5) the
 
     'Tmdb\Laravel\TmdbServiceProvider',
 )
+```
+
+For laravel 5 edit your `config/app.php` the service provider:
+
+```php
+'providers' => [
+    //...
+    //...
+    Tmdb\Laravel\TmdbServiceProvider::class,
+]
 ```
 
 Then publish the configuration file:
@@ -38,7 +48,7 @@ php artisan config:publish php-tmdb/laravel
 
 #### Laravel 5:
 ```
-php artisan vendor:publish --provider=php-tmdb/laravel
+php artisan vendor:publis
 ```
 
 Next you can modify the generated configuration file `tmdb.php` accordingly.
