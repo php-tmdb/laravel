@@ -38,7 +38,7 @@ php artisan config:publish php-tmdb/laravel
 
 #### Laravel 5:
 ```
-php artisan vendor:publish --provider=php-tmdb/laravel
+php artisan vendor:publish --provider="Tmdb\Laravel\TmdbServiceProviderLaravel5"
 ```
 
 Next you can modify the generated configuration file `tmdb.php` accordingly.
