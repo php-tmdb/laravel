@@ -14,20 +14,20 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface as SymfonyDispatc
  * This adapter provides a Laravel integration for applications
  * using the Symfony EventDispatcherInterface
  * It passes any request on to a Symfony Dispatcher and only
- * uses the Laravel Dispatcher only when dispatching events
+ * uses the Laravel Dispatcher when dispatching events
  */
 abstract class EventDispatcherAdapter implements SymfonyDispatcher
 {
 
     /**
      * The Laravel Events Dispatcher
-     * @var Illuminate\Contracts\Events\Dispatcher or Illuminate\Events\Dispatcher
+     * @var \Illuminate\Contracts\Events\Dispatcher or \Illuminate\Events\Dispatcher
      */
     protected $laravelDispatcher;
 
     /**
      * The Symfony Event Dispatcher
-     * @var  Symfony\Component\EventDispatcher\EventDispatcherInterface
+     * @var  \Symfony\Component\EventDispatcher\EventDispatcherInterface
      */
     protected $symfonyDispatcher;
 
@@ -46,20 +46,8 @@ abstract class EventDispatcherAdapter implements SymfonyDispatcher
      */
     public function dispatch($eventName, Event $event = null)
     {
-        if ($event == null)
-        {
-            $event = new Event();
-        }
-
-        $event->setName($eventName);
-        $event->setDispatcher($this);
-
         $this->laravelDispatcher->fire($eventName, $event);
-        $this->symfonyDispatcher->dispatch($eventName, $event);
-
-        $event->setDispatcher($this);
-
-        return $event;
+        return $this->symfonyDispatcher->dispatch($eventName, $event);
     }
 
     /**
