@@ -137,4 +137,19 @@ abstract class EventDispatcherAdapter implements SymfonyDispatcher
         return ($this->symfonyDispatcher->hasListeners($eventName) ||
             $this->laravelDispatcher->hasListeners($eventName));
     }
+
+    /**
+     * Gets the listener priority for a specific event.
+     *
+     * Returns null if the event or the listener does not exist.
+     *
+     * @param string   $eventName The name of the event
+     * @param callable $listener  The listener
+     *
+     * @return int|null The event listener priority
+     */
+    public function getListenerPriority($eventName, $listener)
+    {
+        return $this->symfonyDispatcher->getListenerPriority($eventName, $listener);
+    }
 }
