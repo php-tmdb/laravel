@@ -140,7 +140,7 @@ class WelcomeController extends Controller {
 }
 ```
 The `Configuration` used by the `Tmdb\Helper\ImageHelper` is automatically loaded by the IoC container.
-If you are a Laravel 5.1 (currently not released) user you could also use the blade's new `@inject` functionality,
+If you are a Laravel 5.1 user you could also use the blade's `@inject` functionality,
 ```
 @inject('image', 'Tmdb\Helper\ImageHelper')
 
