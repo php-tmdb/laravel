@@ -7,92 +7,17 @@
 namespace Tmdb\Laravel\Adapters\Tests;
 
 use Tmdb\Laravel\Adapters\EventDispatcherLaravel5 as AdapterDispatcher;
-use Illuminate\Events\Dispatcher as LaravelDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcher as SymfonyDispatcher;
-
-use Symfony\Component\EventDispatcher\Tests\AbstractEventDispatcherTest;
-use Symfony\Component\EventDispatcher\Tests\TestEventListener;
-use Symfony\Component\EventDispatcher\Tests\TestWithDispatcher;
 
 class EventDispatcherTestLaravel5 extends AbstractEventDispatcherTest
 {
-    private $laravelDispatcher;
-    private $symfonyDispatcher;
-    private $dispatcher;
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->dispatcher = $this->createEventDispatcher();
-        $this->listener = new TestEventListener();
-    }
-
     protected function createEventDispatcher()
     {
-        $this->laravelDispatcher = new LaravelDispatcher;
-        $this->symfonyDispatcher = new SymfonyDispatcher;
+        $this->laravel = $this->prophesize('Illuminate\Contracts\Events\Dispatcher');
+        $this->symfony = $this->prophesize('Symfony\Component\EventDispatcher\EventDispatcher');
+
         return new AdapterDispatcher(
-            $this->laravelDispatcher,
-            $this->symfonyDispatcher
+            $this->laravel->reveal(),
+            $this->symfony->reveal()
         );
     }
-
-    public function testTheEventIsDispatchedTroughLaravel()
-    {
-        $dispatched = false;
-        $this->laravelDispatcher->listen('test', function ($event) use (&$dispatched) {
-            $dispatched = true;
-        });
-        $this->dispatcher->dispatch('test');
-        $this->assertTrue($dispatched);
-    }
-
-    public function testItKnowsIfTheLaravelDispatcherHasListeners()
-    {
-        $this->laravelDispatcher->listen('pre.foo', function() {});
-        $this->laravelDispatcher->listen('post.foo', function() {});
-
-        $this->assertTrue($this->dispatcher->hasListeners('pre.foo'));
-        $this->assertTrue($this->dispatcher->hasListeners('post.foo'));
-    }
-
-
-    /**
-     * The following two tests are copies of the same tests from the
-     * AbstractEventDispatcherTest, however instead of asserting
-     * that the event's dispatcher is the adapter dispatcher, we
-     * assert that it is the Symfony Dispatcher
-     */
-
-    public function testLegacyEventReceivesTheDispatcherInstance()
-    {
-        $dispatcher = null;
-        $this->dispatcher->addListener('test', function ($event) use (&$dispatcher) {
-            $dispatcher = $event->getDispatcher();
-        });
-        $this->dispatcher->dispatch('test');
-        $this->assertSame($this->symfonyDispatcher, $dispatcher);
-    }
-
-    public function testEventReceivesTheDispatcherInstance()
-    {
-        $dispatcher = null;
-        $this->dispatcher->addListener('test', function ($event) use (&$dispatcher) {
-            $dispatcher = $event->getDispatcher();
-        });
-        $this->dispatcher->dispatch('test');
-        $this->assertSame($this->symfonyDispatcher, $dispatcher);
-    }
-
-    public function testEventReceivesTheDispatcherInstanceAsArgument()
-    {
-        $listener = new TestWithDispatcher();
-        $this->dispatcher->addListener('test', array($listener, 'foo'));
-        $this->assertNull($listener->name);
-        $this->assertNull($listener->dispatcher);
-        $this->dispatcher->dispatch('test');
-        $this->assertEquals('test', $listener->name);
-        $this->assertSame($this->symfonyDispatcher, $listener->dispatcher);
-    }
-
 }
