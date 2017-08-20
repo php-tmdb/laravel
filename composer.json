@@ -32,10 +32,10 @@
     },
     "minimum-stability": "stable",
     "extra": {
-    "laravel": {
-      "providers": [
-        "Tmdb\\Laravel\\TmdbServiceProviderLaravel5"
-      ]
+         "laravel": {
+                "providers": [
+                "Tmdb\\Laravel\\TmdbServiceProviderLaravel5"
+                ]
+        }
     }
-  }
 }
