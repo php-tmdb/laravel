@@ -30,5 +30,12 @@
             "Tmdb\\Laravel\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+    "laravel": {
+      "providers": [
+        "Tmdb\\Laravel\\TmdbServiceProviderLaravel5"
+      ]
+    }
+  }
 }
