@@ -35,7 +35,10 @@
         "laravel": {
             "providers": [
                 "Tmdb\\Laravel\\TmdbServiceProviderLaravel5"
-            ]
+            ],
+            "aliases": {
+                "Tmdb": "Tmdb\\Laravel\\Facades\\Tmdb"
+            }
         }
     }
 }
