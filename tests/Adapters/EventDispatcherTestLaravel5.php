@@ -12,7 +12,7 @@ class EventDispatcherTestLaravel5 extends AbstractEventDispatcherTest
 {
     protected function createEventDispatcher()
     {
-        $this->laravel = $this->prophesize('Illuminate\Contracts\Events\Dispatcher');
+        $this->laravel = $this->prophesize('Illuminate\Events\Dispatcher');
         $this->symfony = $this->prophesize('Symfony\Component\EventDispatcher\EventDispatcher');
 
         return new AdapterDispatcher(
