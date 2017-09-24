@@ -5,10 +5,23 @@ php:
   - 5.5
   - 5.6
   - 7.0
+  - 7.1
+  - nightly
   - hhvm
+
+env:
+  matrix:
+    - COMPOSER_FLAGS="--prefer-lowest"
+    - COMPOSER_FLAGS=""
+
+matrix:
+  allow_failures:
+    - php: nightly
+    - php: hhvm
+
 
 before_script:
   - composer self-update
-  - composer install --prefer-source --no-interaction --dev
+  - composer update --prefer-source --no-interaction ${COMPOSER_FLAGS}
 
-script: phpunit
+script: vendor/bin/phpunit
