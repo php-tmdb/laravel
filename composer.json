@@ -34,7 +34,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tmdb\\Laravel\\TmdbServiceProviderLaravel5"
+                "Tmdb\\Laravel\\TmdbServiceProvider"
             ],
             "aliases": {
                 "Tmdb": "Tmdb\\Laravel\\Facades\\Tmdb"
