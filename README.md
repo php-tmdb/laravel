@@ -14,6 +14,10 @@ Both Laravel 5 and 4 are supported.
 [![Dependency Status](https://www.versioneye.com/php/php-tmdb:laravel/badge?style=flat)](https://www.versioneye.com/php/php-tmdb:laravel)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/laravel/downloads.svg)](https://packagist.org/packages/php-tmdb/laravel)
 
+## Looking for maintainers
+
+*We are urgently looking for new mainteners of this library, we need someone that can steer this package in the right direction for the Laravel community, we do not currently have anybody on the `php-tmdb` team that uses laravel on a daily basis. We want the default standards to be met and unit tests to be available just to verify the part of the integration with the framework works. Send an email to `php-laravel@wtfz.net` if you are interested, or are willing to help out.*
+
 ## Installation
 
 Install Composer
