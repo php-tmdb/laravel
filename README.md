@@ -41,7 +41,7 @@ composer require php-tmdb/laravel
 
 ## Configuration
 
-Add to your `app/config/app.php` (Laravel 4) or `config/app.php` (Laravel 5) the service provider:
+Add to your `app/config/app.php` (Laravel 4) or `config/app.php` (Laravel <5.5) the service provider:
 
 ```php
 'providers' => array(
@@ -79,7 +79,7 @@ The example below shows how you can use the `Tmdb` facade.
 If you don't want to keep adding the `use Tmdb\Laravel\Facades\Tmdb;` statement in your files, then you can also add the facade as an alias in `config/app.php` file.
 
 ```php
-use Tmdb\Laravel\Facades\Tmdb;
+use Tmdb\Laravel\Facades\Tmdb; // optional for Laravel ≥5.5
 
 class MoviesController {
 
