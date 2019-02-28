@@ -46,7 +46,7 @@ abstract class EventDispatcherAdapter implements SymfonyDispatcher
      */
     public function dispatch($eventName, Event $event = null)
     {
-        $this->laravelDispatcher->fire($eventName, $event);
+        $this->laravelDispatcher->dispatch($eventName, $event);
         return $this->symfonyDispatcher->dispatch($eventName, $event);
     }
 
