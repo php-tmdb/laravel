@@ -41,7 +41,7 @@ abstract class AbstractEventDispatcherTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_dispatches_events_through_both_laravel_and_symfony()
     {
-        $this->laravel->fire(static::EVENT, null)->shouldBeCalled();
+        $this->laravel->dispatch(static::EVENT, null)->shouldBeCalled();
         $this->symfony->dispatch(static::EVENT, null)->shouldBeCalled();
 
         $this->dispatcher->dispatch(static::EVENT);
