@@ -1,5 +1,5 @@
 {
-    "name": "php-tmdb/laravel",
+    "name": "filippofortino/tmdb-laravel",
     "description": "Laravel Package for TMDB ( The Movie Database ) API. Provides easy access to the wtfzdotnet/php-tmdb-api library.",
     "keywords": ["Laravel", "tmdb", "api", "php", "wrapper", "movie", "tv", "tv show", "tvdb"],
     "authors": [
@@ -11,7 +11,7 @@
     "license": "MIT",
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~5.0 || ~4.0",
+        "illuminate/support": "~6.0 || ~5.0 || ~4.0",
         "php-tmdb/api": "~2.0"
     },
     "require-dev": {
