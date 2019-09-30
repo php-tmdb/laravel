@@ -11,6 +11,8 @@ use Tmdb\Laravel\TmdbServiceProviderLaravel4;
 use Tmdb\Laravel\TmdbServiceProviderLaravel5;
 use Tmdb\ApiToken;
 use Tmdb\Client;
+// Custom: explained below
+use Doctrine\Common\Cache\PredisCache;
 
 class TmdbServiceProvider extends ServiceProvider
 {
@@ -72,6 +74,17 @@ class TmdbServiceProvider extends ServiceProvider
         // Setup default configurations for the Tmdb Client
         $this->app->singleton('Tmdb\Client', function() {
             $config = $this->provider->config();
+            
+            // CUSTOM FIX:
+            // Since i will be using Redis to cache HTTP request,
+            // instanciating the driver in the laravel config won't
+            // allow me to cache the config files (PHP can't serialize it).
+            // So i will instanciate it here.
+            if(!array_key_exists('handler', $config['options']['cache'])) {
+                $config['options']['cache']['handler'] = new PredisCache(new \Predis\Client());
+            }
+            // END: custom fix
+            
             $options = $config['options'];
 
             // Use an Event Dispatcher that uses the Laravel event dispatcher
