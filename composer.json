@@ -41,10 +41,10 @@
             }
         }
     },
-    "repositories": {
+    "repositories": [
         {
             "url": "https://github.com/filippofortino/tmdb-api.git",
             "type": "git"
         }
-    }
+    ]
 }
