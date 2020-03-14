@@ -7,8 +7,8 @@
 namespace Tmdb\Laravel\Adapters;
 
 use Symfony\Contracts\EventDispatcher\Event;
-use Symfony\Contracts\EventDispatcher\EventSubscriberInterface;
-use Symfony\Contracts\EventDispatcher\EventDispatcherInterface as SymfonyDispatcher;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface as SymfonyDispatcher;
 
 /**
  * This adapter provides a Laravel integration for applications
