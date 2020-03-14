@@ -6,7 +6,7 @@
  */
 namespace Tmdb\Laravel\Adapters;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface as SymfonyDispatcher;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface as SymfonyDispatcher;
 use Illuminate\Events\Dispatcher as LaravelDispatcher;
 
 /**

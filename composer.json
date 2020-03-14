@@ -15,7 +15,7 @@
         "php-tmdb/api": "^2.1.18"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.5",
+        "phpunit/phpunit": "^8.5",
         "symfony/event-dispatcher": ">=3.4",
         "illuminate/events": ">=5.4",
         "doctrine/cache": ">=1.3.0",
