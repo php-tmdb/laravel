@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Serafim <nesk@xakep.ru>
  * @date 22.03.2016 20:24
