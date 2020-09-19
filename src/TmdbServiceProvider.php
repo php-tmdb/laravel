@@ -12,6 +12,7 @@ use Illuminate\Support\ServiceProvider;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Laravel\Cache\DoctrineCacheBridge;
+use Tmdb\Laravel\EventDispatcher\EventDispatcherBridge;
 
 class TmdbServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,12 @@ class TmdbServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(self::CONFIG_PATH, 'tmdb');
 
+        // Let the IoC container be able to make a Symfony event dispatcher
+        $this->app->bindIf(
+            'Symfony\Component\EventDispatcher\EventDispatcherInterface',
+            'Symfony\Component\EventDispatcher\EventDispatcher'
+        );
+
         $this->app->singleton(Client::class, function ($app) {
             if (!config()->has('tmdb.cache.handler')) {
                 $repository = app('cache')->store(config('tmdb.cache_store'));
@@ -47,6 +54,10 @@ class TmdbServiceProvider extends ServiceProvider
                 }
 
                 config()->set('tmdb.cache.handler', new DoctrineCacheBridge($repository));
+            }
+
+            if (!config()->has('tmdb.event_dispatcher')) {
+                config()->set('tmdb.event_dispatcher', $this->app->make(EventDispatcherBridge::class));
             }
 
             $token = new ApiToken(config('tmdb.api_key'));
