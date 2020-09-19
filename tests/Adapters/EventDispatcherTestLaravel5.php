@@ -4,7 +4,7 @@
  * @author Mark Redeman <markredeman@gmail.com>
  * @copyright (c) 2014, Mark Redeman
  */
-namespace Tmdb\Laravel\Adapters\Tests;
+namespace Tmdb\Laravel\Tests\Adapters;
 
 use Tmdb\Laravel\Adapters\EventDispatcherLaravel5 as AdapterDispatcher;
 
