@@ -10,6 +10,9 @@ return [
      */
     'api_key' => '',
 
+    'cache_store' => 'file',
+    'cache_tag' => '',
+
     /**
      * Client options
      *

@@ -10,6 +10,7 @@ namespace Tmdb\Laravel;
 use Illuminate\Support\ServiceProvider;
 use Tmdb\ApiToken;
 use Tmdb\Client;
+use Tmdb\Laravel\Cache\DoctrineCacheBridge;
 
 class TmdbServiceProvider extends ServiceProvider
 {
@@ -37,11 +38,18 @@ class TmdbServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(self::CONFIG_PATH, 'tmdb');
 
         $this->app->singleton(Client::class, function ($app) {
-            $config = config('tmdb');
-            $options = $config['options'];
+            if (!config()->has('tmdb.cache.handler')) {
+                $repository = app('cache')->store(config('tmdb.cache_store'));
 
-            $token = new ApiToken($config['api_key']);
-            return new Client($token, $options);
+                if (!empty(config('tmdb.cache_tag'))) {
+                    $repository = $repository->tags(config('tmdb.cache_tag'));
+                }
+
+                config()->set('tmdb.cache.handler', new DoctrineCacheBridge($repository));
+            }
+
+            $token = new ApiToken(config('tmdb.api_key'));
+            return new Client($token, config('tmdb.options'));
         });
     }
 
