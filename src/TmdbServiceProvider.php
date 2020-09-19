@@ -13,6 +13,8 @@ use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Laravel\Cache\DoctrineCacheBridge;
 use Tmdb\Laravel\EventDispatcher\EventDispatcherBridge;
+use Tmdb\Model\Configuration;
+use Tmdb\Repository\ConfigurationRepository;
 
 class TmdbServiceProvider extends ServiceProvider
 {
@@ -62,6 +64,12 @@ class TmdbServiceProvider extends ServiceProvider
 
             $token = new ApiToken(config('tmdb.api_key'));
             return new Client($token, config('tmdb.options'));
+        });
+
+        // bind the configuration (used by the image helper)
+        $this->app->bind(Configuration::class, function () {
+            $configuration = $this->app->make(ConfigurationRepository::class);
+            return $configuration->load();
         });
     }
 
