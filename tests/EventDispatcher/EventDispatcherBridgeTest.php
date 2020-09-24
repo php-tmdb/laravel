@@ -1,24 +1,20 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace Tmdb\Laravel\Tests\EventDispatcher;
 
-namespace Tmdb\Laravel\Adapters\Tests;
-
-use Symfony\Component\EventDispatcher\Event;
+use Illuminate\Contracts\Events\Dispatcher;
+use Prophecy\PhpUnit\ProphecyTrait;
+use stdClass;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Tmdb\Laravel\EventDispatcher\EventDispatcherBridge;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use PHPUnit\Framework\TestCase;
 
-use Prophecy\Prophecy\MethodProphecy;
-
-abstract class AbstractEventDispatcherTest extends \PHPUnit_Framework_TestCase
+class EventDispatcherBridgeTest extends TestCase
 {
+    use ProphecyTrait;
+
     const EVENT = 'foo';
 
     /**
@@ -26,32 +22,54 @@ abstract class AbstractEventDispatcherTest extends \PHPUnit_Framework_TestCase
      */
     protected $dispatcher;
 
+    /**
+     * The Laravel Events Dispatcher
+     * @var Dispatcher or \Illuminate\Events\Dispatcher
+     */
     protected $laravel;
+
+    /**
+     * The Symfony Event Dispatcher
+     * @var  EventDispatcherInterface
+     */
     protected $symfony;
 
     private $listener;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->dispatcher = $this->createEventDispatcher();
     }
 
-    abstract protected function createEventDispatcher();
+    protected function createEventDispatcher()
+    {
+        $this->laravel = $this->prophesize('Illuminate\Events\Dispatcher');
+        $this->symfony = $this->prophesize('Symfony\Component\EventDispatcher\EventDispatcher');
+
+        return new EventDispatcherBridge(
+            $this->laravel->reveal(),
+            $this->symfony->reveal()
+        );
+    }
 
     /** @test */
     public function it_dispatches_events_through_both_laravel_and_symfony()
     {
-        $this->laravel->fire(static::EVENT, null)->shouldBeCalled();
-        $this->symfony->dispatch(static::EVENT, null)->shouldBeCalled();
+        $event = new stdClass();
 
-        $this->dispatcher->dispatch(static::EVENT);
+        $this->laravel->dispatch(static::EVENT, $event)->shouldBeCalled();
+        $this->symfony->dispatch($event, static::EVENT)->shouldBeCalled();
+
+        $this->dispatcher->dispatch($event, static::EVENT);
     }
 
     /** @test */
     public function it_returns_the_event_returned_by_the_symfony_dispatcher()
     {
-        $this->symfony->dispatch(static::EVENT, null)->willReturn('bar');
-        $this->assertEquals('bar', $this->dispatcher->dispatch(static::EVENT));
+        $event = new stdClass();
+
+        $this->symfony->dispatch($event, static::EVENT)->willReturn($event);
+        $this->assertEquals($event, $this->dispatcher->dispatch($event, static::EVENT));
     }
 
     /** @test */
