@@ -8,6 +8,8 @@
 
 namespace Tmdb\Laravel;
 
+use Arr;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Tmdb\ApiToken;
 use Tmdb\Client;
@@ -47,23 +49,25 @@ class TmdbServiceProvider extends ServiceProvider
             'Symfony\Component\EventDispatcher\EventDispatcher'
         );
 
-        $this->app->singleton(Client::class, function ($app) {
-            if (!config()->has('tmdb.cache.handler')) {
+        $this->app->singleton(Client::class, function (Application $app) {
+            $options = config('tmdb.options');
+
+            if (!Arr::has($options, 'cache.handler')) {
                 $repository = app('cache')->store(config('tmdb.cache_store'));
 
                 if (!empty(config('tmdb.cache_tag'))) {
                     $repository = $repository->tags(config('tmdb.cache_tag'));
                 }
 
-                config()->set('tmdb.cache.handler', new DoctrineCacheBridge($repository));
+                Arr::set($options, 'cache.handler', new DoctrineCacheBridge($repository));
             }
 
-            if (!config()->has('tmdb.event_dispatcher')) {
-                config()->set('tmdb.event_dispatcher', $this->app->make(EventDispatcherBridge::class));
+            if (!Arr::has($options, 'event_dispatcher')) {
+                Arr::set($options, 'event_dispatcher', $app->make(EventDispatcherBridge::class));
             }
 
             $token = new ApiToken(config('tmdb.api_key'));
-            return new Client($token, config('tmdb.options'));
+            return new Client($token, $options);
         });
 
         // bind the configuration (used by the image helper)
