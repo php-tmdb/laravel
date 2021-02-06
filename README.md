@@ -2,8 +2,6 @@
 
 [![License](https://poser.pugx.org/php-tmdb/laravel/license.png)](https://packagist.org/packages/php-tmdb/laravel)
 [![Build Status](https://travis-ci.org/php-tmdb/laravel.svg)](https://travis-ci.org/php-tmdb/laravel)
-[![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/laravel/badges/coverage.png)](https://scrutinizer-ci.com/g/php-tmdb/laravel/)
-[![PHP & HHVM](https://php-eye.com/badge/php-tmdb/laravel/tested.svg)](https://php-eye.com/package/php-tmdb/laravel)
 
 A Laravel package that provides easy access to the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB (The Movie Database) API wrapper.
 This package comes with a service provider that configures the `Tmdb\Client` and registers it to the IoC container.
@@ -11,7 +9,6 @@ Both Laravel 5 and 4 are supported.
 
 [![Latest Stable Version](https://poser.pugx.org/php-tmdb/laravel/v/stable.svg)](https://packagist.org/packages/php-tmdb/laravel)
 [![Latest Unstable Version](https://poser.pugx.org/php-tmdb/laravel/v/unstable.svg)](https://packagist.org/packages/php-tmdb/laravel)
-[![Dependency Status](https://www.versioneye.com/php/php-tmdb:laravel/badge?style=flat)](https://www.versioneye.com/php/php-tmdb:laravel)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/laravel/downloads.svg)](https://packagist.org/packages/php-tmdb/laravel)
 
 ## Looking for maintainers
@@ -30,13 +27,13 @@ $ sudo mv composer.phar /usr/local/bin/composer
 Add the following to your require block in `composer.json` config
 
 ```
-"php-tmdb/laravel": "~1.0"
+"vahidzoli/laravel-tmdb": "~1.0"
 ```
 
 or just run the following command in your project:
 
 ```
-composer require php-tmdb/laravel
+composer require vahidzoli/laravel-tmdb
 ```
 
 ## Configuration

@@ -35,6 +35,13 @@ return [
             'enabled' => true,
             // Keep the path empty or remove it entirely to default to storage/logs/tmdb.log
             'path' => storage_path('logs/tmdb.log')
-        ]
+        ],
+
+        /*
+         * Log
+         */
+        'adapter' => new \Tmdb\HttpClient\Adapter\GuzzleAdapter(new \GuzzleHttp\Client([
+            'proxy' => ''
+        ]))
     ],
 ];
